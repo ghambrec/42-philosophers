@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:21:12 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 16:27:04 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:28:35 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	init_table(t_table *table, int argc, char **argv)
 {
-	int	i;
-
 	table->chairs = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);
@@ -26,12 +24,6 @@ static void	init_table(t_table *table, int argc, char **argv)
 	table->philos_finished = false;
 	pthread_mutex_init(&table->mutex_philo_died, NULL);
 	pthread_mutex_init(&table->mutex_philos_finished, NULL);
-	i = 0;
-	while (i < table->chairs)
-	{
-		pthread_mutex_init(&table->fork[i], NULL);
-		i++;
-	}
 }
 
 static void	init_philos(t_table *table)
