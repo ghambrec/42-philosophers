@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:21:12 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 16:57:04 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:07:19 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,8 @@ static void	init_philos(t_table *table)
 	}	
 }
 
-// static void	init_forks(t_table *table)
-// {
-	
-// }
-
 void	init_structs(t_table *table, int argc, char **argv)
 {
 	init_table(table, argc, argv);
 	init_philos(table);
-	// init_forks(table);
 }
