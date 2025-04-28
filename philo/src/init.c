@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:21:12 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 16:28:35 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:57:04 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	init_table(t_table *table, int argc, char **argv)
 	table->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table->max_meals = ft_atoi(argv[5]);
+	table->start_time = ft_gettimeofday_ms();
 	table->philo_died = false;
 	table->philos_finished = false;
 	pthread_mutex_init(&table->mutex_philo_died, NULL);
@@ -39,7 +40,7 @@ static void	init_philos(t_table *table)
 			table->philo[i].fork_right = &table->philo[i - 1].fork_left;
 		if (i == table->chairs - 1)
 			table->philo[i].fork_right = &table->philo[0].fork_left;
-		// table->philo[i].last_meal = 
+		table->philo[i].last_meal = ft_get_current_ms(table);
 		table->philo[i].meals_eaten = 0;
 		pthread_mutex_init(&table->philo[i].mutex_last_meal, NULL);
 		i++;

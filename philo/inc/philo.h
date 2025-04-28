@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 16:28:00 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:52:51 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdio.h> // printf
 # include <pthread.h> // thread
 # include <unistd.h> // usleep
+# include <sys/time.h> // gettimeofday
 
 typedef struct s_philos
 {
@@ -42,6 +43,7 @@ typedef struct s_table
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
+	size_t			start_time;
 	int				max_meals;
 	int				philo_died;
 	int				philos_finished;
@@ -55,6 +57,8 @@ typedef struct s_table
 // ---------------------------------------------
 int		check_arguments(int argc, char **argv);
 void	init_structs(t_table *table, int argc, char **argv);
+size_t	ft_gettimeofday_ms(void);
+size_t	ft_get_current_ms(t_table *table);
 
 // ---------------------------------------------
 // UTILS

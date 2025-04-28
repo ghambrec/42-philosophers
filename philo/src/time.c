@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 18:53:42 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 17:06:31 by ghambrec         ###   ########.fr       */
+/*   Created: 2025/04/28 16:44:17 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/04/28 16:57:45 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+size_t	ft_gettimeofday_ms(void)
 {
-	t_table	table;
+	struct timeval	tv;
 
-	if (check_arguments(argc, argv) != 0)
-		return (EXIT_FAILURE);
-	init_structs(&table, argc, argv);
-	
-	
-	return (EXIT_SUCCESS);
+	if (gettimeofday(&tv, NULL) == -1)
+		return (0);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+size_t	ft_get_current_ms(t_table *table)
+{
+	return (ft_gettimeofday_ms() - table->start_time);
 }
