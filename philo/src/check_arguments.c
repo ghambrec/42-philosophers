@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:30:03 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 13:30:40 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 13:33:14 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_arguments(int argc, char **argv)
 	{
 		if (ft_atoi(argv[i]) <= 0)
 		{
-			ft_putendl_fd("Only positive numbers allowed!", STDERR_FILENO);
+			ft_putendl_fd("Only numbers bigger than 0 allowed!", STDERR_FILENO);
 			return (1);
 		}
 		if (contains_only_numbers(argv[i]) == false)
