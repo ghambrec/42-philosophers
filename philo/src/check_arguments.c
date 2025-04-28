@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:30:03 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 13:33:14 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:18:18 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_arguments(int argc, char **argv)
 			ft_putendl_fd("Only numbers allowed!", STDERR_FILENO);
 			return (1);
 		}
-		if (i == 1 && ft_atoi(argv[i]) > 200)
+		if (i == 1 && ft_atoi(argv[i]) > MAX_PHILOS)
 			return (ft_putendl_fd("Max philo is 200", STDERR_FILENO), 1);
 		i++;
 	}

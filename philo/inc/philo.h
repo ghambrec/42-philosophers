@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 13:31:02 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:28:00 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,43 @@
 # define	EXIT_SUCCESS 0
 # define	true 1
 # define	false 0
+# define	MAX_PHILOS 200
 
 // unnoetige includes wieder loeschen
 # include <stdio.h> // printf
 # include <pthread.h> // thread
 # include <unistd.h> // usleep
 
+typedef struct s_philos
+{
+	int				id;
+	pthread_t		thread;
+	pthread_mutex_t	fork_left;
+	pthread_mutex_t	*fork_right;
+	size_t			last_meal;
+	int				meals_eaten;
+	pthread_mutex_t	mutex_last_meal;
+} t_philos;
+
+typedef struct s_table
+{
+	int				chairs;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	int				max_meals;
+	int				philo_died;
+	int				philos_finished;
+	pthread_mutex_t	mutex_philo_died;
+	pthread_mutex_t	mutex_philos_finished;
+	t_philos		philo[MAX_PHILOS];
+} t_table;
+
 // ---------------------------------------------
 // PHILOSOPHERS
 // ---------------------------------------------
-int	check_arguments(int argc, char **argv);
+int		check_arguments(int argc, char **argv);
+void	init_structs(t_table *table, int argc, char **argv);
 
 // ---------------------------------------------
 // UTILS

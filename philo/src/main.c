@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:53:42 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 13:31:19 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:26:14 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	if (check_arguments(argc, argv) != 0)
-		return (EXIT_FAILURE);	
+	t_table	table;
 
-	printf("passt!\n");
+	if (check_arguments(argc, argv) != 0)
+		return (EXIT_FAILURE);
+	init_structs(&table, argc, argv);
+
+	
 
 	return (EXIT_SUCCESS);
 }
