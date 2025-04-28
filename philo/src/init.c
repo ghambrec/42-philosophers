@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:21:12 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 17:07:43 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/28 17:16:39 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	init_philos(t_table *table)
 	{
 		table->philo[i].id = i + 1;
 		pthread_mutex_init(&table->philo[i].fork_left, NULL);
-		if (i != 0)
+		if (i == 0)
+			table->philo[i].fork_right = &table->philo[table->chairs - 1].fork_left;
+		else
 			table->philo[i].fork_right = &table->philo[i - 1].fork_left;
-		if (i == table->chairs - 1)
-			table->philo[i].fork_right = &table->philo[0].fork_left;
 		table->philo[i].last_meal = ft_get_current_ms(table);
 		table->philo[i].meals_eaten = 0;
 		pthread_mutex_init(&table->philo[i].mutex_last_meal, NULL);
