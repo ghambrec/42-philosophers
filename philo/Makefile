@@ -12,7 +12,7 @@ OBJECT_DIR	:=	./obj
 # ---------------------------------------------
 SOURCE_DIRS	:=	src src/utils
 VPATH		:= 	$(SOURCE_DIRS)
-SOURCES		:=	main.c ft_atoi.c ft_isdigit.c ft_strchr.c ft_putendl_fd.c
+SOURCES		:=	main.c ft_atoi.c ft_isdigit.c ft_strchr.c ft_putendl_fd.c check_arguments.c
 OBJECTS		:=	$(addprefix $(OBJECT_DIR)/, $(SOURCES:.c=.o))
 
 # ---------------------------------------------
