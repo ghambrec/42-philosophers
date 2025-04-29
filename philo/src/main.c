@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 18:53:42 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 22:22:37 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 23:40:50 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error starting the simulation\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	join_philos(&table);
-	// join_monitor(&table);
+	join_threads(&table);
 	
 	return (EXIT_SUCCESS);
 }

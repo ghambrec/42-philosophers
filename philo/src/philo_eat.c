@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:13:44 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 23:19:10 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:31:52 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	eat_spaghetti(t_philos *philo)
 	}
 	philo->last_meal = ft_get_current_ms(philo->table);
 	print_action(philo, "is eating");
-	usleep(philo->table->time_to_eat * 1000);
+	super_sleep(philo->table->time_to_eat);
 }
 
 void	p_eat(t_philos *philo)

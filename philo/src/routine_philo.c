@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:44:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 23:04:06 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:48:30 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ static int	check_philo_alive(t_philos *philo)
 	return (true);
 }
 
+static void	set_philo_dead(t_philos *philo)
+{
+	pthread_mutex_lock(&philo->mutex_philo_dead);
+	philo->philo_dead = true;
+	pthread_mutex_unlock(&philo->mutex_philo_dead);
+}
+
 static int	call_action(void (*action)(t_philos *), t_philos *philo)
 {
 	if (dinner_over_philo(philo) == true)
@@ -30,10 +37,7 @@ static int	call_action(void (*action)(t_philos *), t_philos *philo)
 		action(philo);
 	else
 	{
-		pthread_mutex_lock(&philo->mutex_philo_dead);
-		philo->philo_dead = true;
-		pthread_mutex_unlock(&philo->mutex_philo_dead);
-		print_action(philo, "died");
+		set_philo_dead(philo);
 		return (false);
 	}
 	return (true);
@@ -46,18 +50,12 @@ void	*routine_philo(void *philo_ptr)
 	philo = (t_philos *)philo_ptr;
 	while (dinner_over_philo(philo) == false)
 	{
-		
-		// think, eat (takefork), sleep
 		if (call_action(p_think, philo) == false)
 			return (NULL);
 		if (call_action(p_eat, philo) == false)
 			return (NULL);
-		
-
-		
-		// return (NULL);
+		if (call_action(p_sleep, philo) == false)
+			return (NULL);
 	}
-
-	
 	return (NULL);
 }

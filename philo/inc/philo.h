@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 22:51:13 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:35:09 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct s_philos
 	pthread_t		thread;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	*fork_right;
-	size_t			last_meal; // hier greift nur eigene philo zu
-	int				meals_eaten; // hier greift nur eigene philo zu
-	int				philo_dead; // hier greift philo + monitor zu
-	int				philo_full; // hier greift philo + monitor zu
+	size_t			last_meal; // philo
+	int				meals_eaten; // philo
+	int				philo_dead; // philo + monitor
+	int				philo_full; // philo + monitor
 	pthread_mutex_t	mutex_philo_dead;
 	pthread_mutex_t	mutex_philo_full;
 	struct s_table	*table;
@@ -66,8 +66,7 @@ void	init_structs(t_table *table, int argc, char **argv);
 size_t	ft_gettimeofday_ms(void);
 size_t	ft_get_current_ms(t_table *table);
 int		start_dining(t_table *table);
-void	join_philos(t_table *table);
-void	join_monitor(t_table *table);
+void	join_threads(t_table *table);
 int		dinner_over_philo(t_philos *philo);
 void	*routine_philo(void *philo_ptr);
 void	print_action(t_philos *philo, char *action);
@@ -78,6 +77,7 @@ void	*routine_monitor(void *table_ptr);
 int		is_full(t_philos *philo);
 int		is_dead(t_philos *philo);
 int		is_dead_one(t_table *table);
+void	super_sleep(size_t ms);
 
 // ---------------------------------------------
 // UTILS
