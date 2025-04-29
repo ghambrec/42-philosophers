@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/28 16:52:51 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:04:30 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int		check_arguments(int argc, char **argv);
 void	init_structs(t_table *table, int argc, char **argv);
 size_t	ft_gettimeofday_ms(void);
 size_t	ft_get_current_ms(t_table *table);
+int		start_dining(t_table *table);
+void	join_philos(t_table *table);
+// void	join_monitor(t_table *table);
 
 // ---------------------------------------------
 // UTILS
