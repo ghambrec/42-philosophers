@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_dining.c                                     :+:      :+:    :+:   */
+/*   routine_philo.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 12:35:32 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:07:49 by ghambrec         ###   ########.fr       */
+/*   Created: 2025/04/29 14:44:31 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/04/29 15:09:24 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	create_philos(t_table *table)
+void	*routine_philo(void *philo_ptr)
 {
-	int			i;
 	t_philos	*philo;
-
-	i = 0;
-	while (i < table->chairs)
+	
+	philo = (t_philos *)philo_ptr;
+	while (dinner_over(philo->table) == false)
 	{
-		philo = &table->philo[i];
-		pthread_create(&philo->thread, NULL, routine_philo, (void*) philo);
-		i++;
+		// think, eat (takefork), sleep
+		think(philo);
+		eat(philo);
+		return (NULL);
 	}
-}
 
-int	start_dining(t_table *table)
-{
-	// Fehlerhandling fuer create_threads noch einbauen?
-	create_philos(table);
-	// start_monitor(table);
-
-	return (EXIT_SUCCESS);
+	
+	return (NULL);
 }

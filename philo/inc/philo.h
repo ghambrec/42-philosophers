@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 14:04:30 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:14:30 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct s_philos
 	pthread_t		thread;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	*fork_right;
-	size_t			last_meal;
+	size_t			last_meal; // hieraus berechnen ob philo tot ist
 	int				meals_eaten;
 	pthread_mutex_t	mutex_last_meal;
+	struct s_table	*table;
 } t_philos;
 
 typedef struct s_table
@@ -44,11 +45,12 @@ typedef struct s_table
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				max_meals;
+	int				max_meals; // darauf greift nur der monitor zu
 	int				philo_died;
-	int				philos_finished;
+	int				dinner_finished;
 	pthread_mutex_t	mutex_philo_died;
-	pthread_mutex_t	mutex_philos_finished;
+	pthread_mutex_t	mutex_dinner_finished;
+	pthread_mutex_t	mutex_printf;
 	t_philos		philo[MAX_PHILOS];
 } t_table;
 
@@ -61,7 +63,12 @@ size_t	ft_gettimeofday_ms(void);
 size_t	ft_get_current_ms(t_table *table);
 int		start_dining(t_table *table);
 void	join_philos(t_table *table);
-// void	join_monitor(t_table *table);
+int		dinner_over(t_table *table);
+void	*routine_philo(void *philo_ptr);
+void	print_action(t_philos *philo, char *action);
+void	think(t_philos *philo);
+void	sleep(t_philos *philo);
+void	eat(t_philos *philo);
 
 // ---------------------------------------------
 // UTILS
