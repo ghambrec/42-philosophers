@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:35:32 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 23:41:04 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 01:10:20 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ static void	create_philos(t_table *table)
 	}
 }
 
+static void create_only_one_philo(t_table *table)
+{
+	pthread_create(&table->philo[0].thread, NULL, \
+		routine_only_one_philo, (void*) &table->philo);
+}
+
 static void	create_monitor(t_table *table)
 {
 	usleep(200);
@@ -35,7 +41,10 @@ static void	create_monitor(t_table *table)
 int	start_dining(t_table *table)
 {
 	// Fehlerhandling fuer create_threads noch einbauen?
-	create_philos(table);
+	if (table->chairs == 1)
+		create_only_one_philo(table);
+	else
+		create_philos(table);
 	create_monitor(table);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:44:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/30 00:48:30 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 01:19:20 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,19 @@ void	*routine_philo(void *philo_ptr)
 		if (call_action(p_sleep, philo) == false)
 			return (NULL);
 	}
+	return (NULL);
+}
+
+void	*routine_only_one_philo(void *philo_ptr)
+{
+	t_philos	*philo;
+	
+	philo = (t_philos *)philo_ptr;
+	call_action(p_think, philo);
+	pthread_mutex_lock(&philo->fork_left);
+	print_action(philo, "took a fork");
+	super_sleep(philo->table->time_to_die);
+	set_philo_dead(philo);
+	pthread_mutex_unlock(&philo->fork_left);
 	return (NULL);
 }
