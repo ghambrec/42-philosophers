@@ -6,13 +6,13 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:35:32 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:07:49 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 22:18:53 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	create_philos(t_table *table)
+static void	create_philos(t_table *table)
 {
 	int			i;
 	t_philos	*philo;
@@ -26,11 +26,17 @@ void	create_philos(t_table *table)
 	}
 }
 
+// static void	create_monitor(t_table *table)
+// {
+// 	usleep(200);
+// 	pthread_create(&table->monitor, NULL, routine_monitor, (void*) table);
+// }
+
 int	start_dining(t_table *table)
 {
 	// Fehlerhandling fuer create_threads noch einbauen?
 	create_philos(table);
-	// start_monitor(table);
+	// create_monitor(table);
 
 	return (EXIT_SUCCESS);
 }

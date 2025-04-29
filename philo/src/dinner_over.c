@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dinner_over.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 18:53:42 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 22:22:37 by ghambrec         ###   ########.fr       */
+/*   Created: 2025/04/29 22:29:54 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/04/29 22:51:51 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
-{
-	t_table	table;
 
-	if (check_arguments(argc, argv) != 0)
-		return (EXIT_FAILURE);
-	init_structs(&table, argc, argv);
-	if (start_dining(&table) != 0)
-	{
-		ft_putendl_fd("Error starting the simulation\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	join_philos(&table);
-	// join_monitor(&table);
-	
-	return (EXIT_SUCCESS);
+
+// dinner_over_philo (for a single philo)
+// a) some philo died
+// b) this philo is full
+int	dinner_over_philo(t_philos *philo)
+{
+	if (is_dead_one(philo->table) == true || is_full(philo) == true)
+		return (true);
+	return (false);
 }
+
+
+// dinner_over_monitor (for monitor)
+// a) some philo died
+// b) all philos are full

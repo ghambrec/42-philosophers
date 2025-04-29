@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:15:55 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 22:51:13 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,26 @@ typedef struct s_philos
 	pthread_t		thread;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	*fork_right;
-	size_t			last_meal; // hieraus berechnen ob philo tot ist
-	int				meals_eaten;
-	pthread_mutex_t	mutex_last_meal;
+	size_t			last_meal; // hier greift nur eigene philo zu
+	int				meals_eaten; // hier greift nur eigene philo zu
+	int				philo_dead; // hier greift philo + monitor zu
+	int				philo_full; // hier greift philo + monitor zu
+	pthread_mutex_t	mutex_philo_dead;
+	pthread_mutex_t	mutex_philo_full;
 	struct s_table	*table;
 } t_philos;
 
 typedef struct s_table
 {
 	int				chairs;
+	pthread_t		monitor;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				max_meals; // darauf greift nur der monitor zu
-	int				philo_died;
-	int				dinner_finished;
+	int				max_meals; // NUR LESEN NIE MODIFY
+	int				philo_died; // dinner_over --> dieses flag setzt der monitor
+	int				dinner_finished; // dinner_over --> dieses flag setzt der monitor
 	pthread_mutex_t	mutex_philo_died;
 	pthread_mutex_t	mutex_dinner_finished;
 	pthread_mutex_t	mutex_printf;
@@ -63,12 +67,17 @@ size_t	ft_gettimeofday_ms(void);
 size_t	ft_get_current_ms(t_table *table);
 int		start_dining(t_table *table);
 void	join_philos(t_table *table);
-int		dinner_over(t_table *table);
+void	join_monitor(t_table *table);
+int		dinner_over_philo(t_philos *philo);
 void	*routine_philo(void *philo_ptr);
 void	print_action(t_philos *philo, char *action);
 void	p_think(t_philos *philo);
 void	p_sleep(t_philos *philo);
 void	p_eat(t_philos *philo);
+void	*routine_monitor(void *table_ptr);
+int		is_full(t_philos *philo);
+int		is_dead(t_philos *philo);
+int		is_dead_one(t_table *table);
 
 // ---------------------------------------------
 // UTILS

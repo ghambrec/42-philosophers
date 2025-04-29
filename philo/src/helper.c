@@ -6,26 +6,37 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:24:47 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:06:40 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 22:48:27 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	dinner_over(t_table *table)
+int	is_full(t_philos *philo)
 {
-	int	philo_died;
-	int	dinner_finished;
+	int	i_am_full;
+	pthread_mutex_lock(&philo->mutex_philo_full);
+	i_am_full = philo->philo_full;
+	pthread_mutex_unlock(&philo->mutex_philo_full);
+	return (i_am_full);
+}
 
+int	is_dead(t_philos *philo)
+{
+	int	i_am_dead;
+	pthread_mutex_lock(&philo->mutex_philo_dead);
+	i_am_dead = philo->philo_dead;
+	pthread_mutex_unlock(&philo->mutex_philo_dead);
+	return (i_am_dead);
+}
+
+int	is_dead_one(t_table *table)
+{
+	int	one_dead;
 	pthread_mutex_lock(&table->mutex_philo_died);
-	philo_died = table->philo_died;
+	one_dead = table->philo_died;
 	pthread_mutex_unlock(&table->mutex_philo_died);
-	pthread_mutex_lock(&table->mutex_dinner_finished);
-	dinner_finished = table->dinner_finished;
-	pthread_mutex_unlock(&table->mutex_dinner_finished);
-	if (philo_died == true || dinner_finished == true)
-		return (true);
-	return (false);
+	return (one_dead);
 }
 
 void	print_action(t_philos *philo, char *action)

@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 15:21:12 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:06:30 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 22:40:32 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static void	init_philos(t_table *table)
 			philo->fork_right = &table->philo[i - 1].fork_left;
 		philo->last_meal = ft_get_current_ms(table);
 		philo->meals_eaten = 0;
-		pthread_mutex_init(&philo->mutex_last_meal, NULL);
+		philo->philo_dead = false;
+		pthread_mutex_init(&philo->mutex_philo_full, NULL);
+		pthread_mutex_init(&philo->mutex_philo_dead, NULL);
 		philo->table = table;
 		i++;
 	}	
