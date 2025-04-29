@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:13:44 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:14:05 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:16:38 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-void	eat(t_philos *philo)
-{
-	return ;	
-}
+// void	p_eat(t_philos *philo)
+// {
+// 	return ;	
+// }

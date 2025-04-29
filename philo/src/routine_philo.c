@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:44:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:09:24 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:16:26 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	*routine_philo(void *philo_ptr)
 	while (dinner_over(philo->table) == false)
 	{
 		// think, eat (takefork), sleep
-		think(philo);
-		eat(philo);
+		p_think(philo);
+		// p_eat(philo);
+		p_sleep(philo);
 		return (NULL);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 15:14:30 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:15:55 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	join_philos(t_table *table);
 int		dinner_over(t_table *table);
 void	*routine_philo(void *philo_ptr);
 void	print_action(t_philos *philo, char *action);
-void	think(t_philos *philo);
-void	sleep(t_philos *philo);
-void	eat(t_philos *philo);
+void	p_think(t_philos *philo);
+void	p_sleep(t_philos *philo);
+void	p_eat(t_philos *philo);
 
 // ---------------------------------------------
 // UTILS
