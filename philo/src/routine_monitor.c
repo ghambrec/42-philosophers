@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 21:42:43 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/30 00:47:16 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:57:08 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ static void	philo_died(t_philos *philo)
 	pthread_mutex_lock(&philo->table->mutex_printf);
 	printf("%zu %i %s\n", ft_get_current_ms(philo->table), philo->id, "died");
 	pthread_mutex_unlock(&philo->table->mutex_printf);
+}
+
+static int	all_full(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->chairs)
+	{
+		if (is_full(&table->philo[i]) == false)
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 void	*routine_monitor(void *table_ptr)
@@ -38,6 +52,8 @@ void	*routine_monitor(void *table_ptr)
 				philo_died(&table->philo[i]);
 				return (NULL);
 			}
+			if (all_full(table) == true)
+				return (NULL);
 			i++;
 		}
 		usleep(500);

@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/30 00:35:09 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:59:12 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_philos
 	pthread_mutex_t	*fork_right;
 	size_t			last_meal; // philo
 	int				meals_eaten; // philo
-	int				philo_dead; // philo + monitor
-	int				philo_full; // philo + monitor
+	int				philo_dead; // alle
+	int				philo_full; // alle
 	pthread_mutex_t	mutex_philo_dead;
 	pthread_mutex_t	mutex_philo_full;
 	struct s_table	*table;
@@ -50,10 +50,8 @@ typedef struct s_table
 	size_t			time_to_sleep;
 	size_t			start_time;
 	int				max_meals; // NUR LESEN NIE MODIFY
-	int				philo_died; // dinner_over --> dieses flag setzt der monitor
-	int				dinner_finished; // dinner_over --> dieses flag setzt der monitor
+	int				philo_died; // alle --> dieses flag setzt der monitor
 	pthread_mutex_t	mutex_philo_died;
-	pthread_mutex_t	mutex_dinner_finished;
 	pthread_mutex_t	mutex_printf;
 	t_philos		philo[MAX_PHILOS];
 } t_table;
