@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:13:44 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/30 00:31:52 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 01:01:19 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ static void	take_forks(t_philos *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->fork_right);
+		print_action(philo, "took a fork");
 		pthread_mutex_lock(&philo->fork_left);
+		print_action(philo, "took a fork");
 	}
 	else
 	{
