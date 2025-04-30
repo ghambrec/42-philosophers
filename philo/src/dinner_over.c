@@ -6,13 +6,11 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 22:29:54 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/29 22:51:51 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/30 02:37:50 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-
 
 // dinner_over_philo (for a single philo)
 // a) some philo died
@@ -23,8 +21,3 @@ int	dinner_over_philo(t_philos *philo)
 		return (true);
 	return (false);
 }
-
-
-// dinner_over_monitor (for monitor)
-// a) some philo died
-// b) all philos are full
