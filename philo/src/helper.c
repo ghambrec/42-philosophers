@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:24:47 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/30 00:38:03 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:23:01 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ int	is_full(t_philos *philo)
 	i_am_full = philo->philo_full;
 	pthread_mutex_unlock(&philo->mutex_philo_full);
 	return (i_am_full);
-}
-
-int	is_dead(t_philos *philo)
-{
-	int	i_am_dead;
-	pthread_mutex_lock(&philo->mutex_philo_dead);
-	i_am_dead = philo->philo_dead;
-	pthread_mutex_unlock(&philo->mutex_philo_dead);
-	return (i_am_dead);
 }
 
 int	is_dead_one(t_table *table)

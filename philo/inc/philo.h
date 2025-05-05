@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/05 15:11:40 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:31:01 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ typedef struct s_philos
 	pthread_t		thread;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	*fork_right;
-	size_t			last_meal; // philo
+	size_t			last_meal; // alle
 	int				meals_eaten; // philo
-	int				philo_dead; // alle
 	int				philo_full; // alle
-	pthread_mutex_t	mutex_philo_dead;
+	pthread_mutex_t	mutex_last_meal;
 	pthread_mutex_t	mutex_philo_full;
 	struct s_table	*table;
 } t_philos;
@@ -65,7 +64,7 @@ size_t	ft_gettimeofday_ms(void);
 size_t	ft_get_current_ms(t_table *table);
 int		start_dining(t_table *table);
 void	join_threads(t_table *table);
-int		dinner_over_philo(t_philos *philo);
+int		dinner_over(t_philos *philo);
 void	*routine_philo(void *philo_ptr);
 void	print_action(t_philos *philo, char *action);
 void	p_think(t_philos *philo);
@@ -73,7 +72,6 @@ void	p_sleep(t_philos *philo);
 void	p_eat(t_philos *philo);
 void	*routine_monitor(void *table_ptr);
 int		is_full(t_philos *philo);
-int		is_dead(t_philos *philo);
 int		is_dead_one(t_table *table);
 void	super_sleep(size_t ms);
 void	*routine_only_one_philo(void *philo_ptr);

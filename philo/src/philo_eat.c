@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:13:44 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/04/30 01:26:11 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/05 16:09:15 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ static void	eat_spaghetti(t_philos *philo)
 		philo->philo_full = true;
 		pthread_mutex_unlock(&philo->mutex_philo_full);
 	}
+	pthread_mutex_lock(&philo->mutex_last_meal);
 	philo->last_meal = ft_get_current_ms(philo->table);
+	pthread_mutex_unlock(&philo->mutex_last_meal);
 	print_action(philo, "is eating");
 	super_sleep(philo->table->time_to_eat);
 }
@@ -54,6 +56,7 @@ static void	eat_spaghetti(t_philos *philo)
 void	p_eat(t_philos *philo)
 {
 	take_forks(philo);
-	eat_spaghetti(philo);
+	if (is_dead_one(philo->table) == false)
+		eat_spaghetti(philo);
 	release_forks(philo);
 }
