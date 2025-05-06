@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 18:21:25 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/06 19:18:27 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	p_eat(t_philos *philo);
 void	*routine_monitor(void *table_ptr);
 int		is_full(t_philos *philo);
 int		is_dead_one(t_table *table);
-void	super_sleep(size_t ms, t_philos *philo);
+void	super_sleep(size_t ms);
 void	*routine_only_one_philo(void *philo_ptr);
 void	cleanup(t_table *table);
 
