@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:44:17 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 17:05:01 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:04:46 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	super_sleep(size_t ms, t_philos *philo)
 	size_t	start;
 
 	start = ft_gettimeofday_ms();
-	while ((ft_gettimeofday_ms() - start) < ms && is_dead_one(philo->table) == false)
+	while ((ft_gettimeofday_ms() - start) < ms && \
+			is_dead_one(philo->table) == FALSE)
 		usleep(500);
 }

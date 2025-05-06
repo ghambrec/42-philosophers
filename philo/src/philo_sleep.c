@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:12:07 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 17:05:33 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:57:52 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	p_sleep(t_philos *philo)
 {
-		print_action(philo, "is sleeping");
-		super_sleep(philo->table->time_to_sleep, philo);
+	print_action(philo, "is sleeping");
+	super_sleep(philo->table->time_to_sleep, philo);
 }

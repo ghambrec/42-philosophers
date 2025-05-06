@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 17:06:43 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:02:23 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define PHILO_H
 
 // weil stdlib nicht inkludiert ist
-# define	EXIT_FAILURE 1
-# define	EXIT_SUCCESS 0
-# define	true 1
-# define	false 0
-# define	MAX_PHILOS 200
+# define EXIT_FAILURE	1
+# define EXIT_SUCCESS	0
+# define TRUE	1
+# define FALSE	0
+# define MAX_PHILOS	200
 
 // unnoetige includes wieder loeschen
 # include <stdio.h> // printf
@@ -38,7 +38,7 @@ typedef struct s_philos
 	pthread_mutex_t	mutex_last_meal;
 	pthread_mutex_t	mutex_philo_full;
 	struct s_table	*table;
-} t_philos;
+}	t_philos;
 
 typedef struct s_table
 {
@@ -53,7 +53,7 @@ typedef struct s_table
 	pthread_mutex_t	mutex_philo_died;
 	pthread_mutex_t	mutex_printf;
 	t_philos		philo[MAX_PHILOS];
-} t_table;
+}	t_table;
 
 // ---------------------------------------------
 // PHILOSOPHERS
@@ -62,7 +62,7 @@ int		check_arguments(int argc, char **argv);
 void	init_structs(t_table *table, int argc, char **argv);
 size_t	ft_gettimeofday_ms(void);
 size_t	ft_get_current_ms(t_table *table);
-int		start_dining(t_table *table);
+void	start_dining(t_table *table);
 void	join_threads(t_table *table);
 int		dinner_over(t_philos *philo);
 void	*routine_philo(void *philo_ptr);
@@ -84,5 +84,6 @@ int		ft_atoi(const char *str);
 int		ft_isdigit(int num);
 char	*ft_strchr(const char *str, int c);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd);
 
 #endif
