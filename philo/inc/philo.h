@@ -6,25 +6,23 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 18:02:23 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:21:25 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-// weil stdlib nicht inkludiert ist
 # define EXIT_FAILURE	1
 # define EXIT_SUCCESS	0
 # define TRUE	1
 # define FALSE	0
 # define MAX_PHILOS	200
 
-// unnoetige includes wieder loeschen
-# include <stdio.h> // printf
-# include <pthread.h> // thread
-# include <unistd.h> // usleep
-# include <sys/time.h> // gettimeofday
+# include <stdio.h>
+# include <pthread.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_philos
 {
@@ -32,9 +30,9 @@ typedef struct s_philos
 	pthread_t		thread;
 	pthread_mutex_t	fork_left;
 	pthread_mutex_t	*fork_right;
-	size_t			last_meal; // alle
-	int				meals_eaten; // philo
-	int				philo_full; // alle
+	size_t			last_meal;
+	int				meals_eaten;
+	int				philo_full;
 	pthread_mutex_t	mutex_last_meal;
 	pthread_mutex_t	mutex_philo_full;
 	struct s_table	*table;
@@ -48,8 +46,8 @@ typedef struct s_table
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				max_meals; // NUR LESEN NIE MODIFY
-	int				philo_died; // alle --> dieses flag setzt der monitor
+	int				max_meals;
+	int				philo_died;
 	pthread_mutex_t	mutex_philo_died;
 	pthread_mutex_t	mutex_printf;
 	t_philos		philo[MAX_PHILOS];
