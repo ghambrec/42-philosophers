@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 18:53:42 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 15:22:27 by ghambrec         ###   ########.fr       */
+/*   Created: 2025/05/06 15:24:51 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/05/06 15:54:32 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	cleanup(t_table *table)
 {
-	t_table	table;
+	int	i;
 
-	if (check_arguments(argc, argv) != 0)
-		return (EXIT_FAILURE);
-	init_structs(&table, argc, argv);
-	if (start_dining(&table) != 0)
+	pthread_mutex_destroy(&table->mutex_philo_died);
+	pthread_mutex_destroy(&table->mutex_printf);
+	i = 0;
+	while (i < table->chairs)
 	{
-		ft_putendl_fd("Error starting the simulation\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
+		pthread_mutex_destroy(&table->philo[i].fork_left);
+		pthread_mutex_destroy(&table->philo[i].mutex_last_meal);
+		pthread_mutex_destroy(&table->philo[i].mutex_philo_full);
+		i++;
 	}
-	join_threads(&table);
-	cleanup(&table);
-	return (EXIT_SUCCESS);
 }
