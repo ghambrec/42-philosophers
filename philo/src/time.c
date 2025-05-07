@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 16:44:17 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 19:18:03 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:14:49 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ size_t	ft_get_current_ms(t_table *table)
 	return (ft_gettimeofday_ms() - table->start_time);
 }
 
-void	super_sleep(size_t ms)
+void	super_sleep(size_t ms, t_philos *philo)
 {
 	size_t	start;
 
 	start = ft_gettimeofday_ms();
-	while ((ft_gettimeofday_ms() - start) < ms)
+	while ((ft_gettimeofday_ms() - start) < ms && is_dead_one(philo->table) == FALSE)
 		usleep(500);
 }

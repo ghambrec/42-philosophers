@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:44:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 19:18:55 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:13:51 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*routine_only_one_philo(void *philo_ptr)
 	call_action(p_think, philo);
 	pthread_mutex_lock(&philo->fork_left);
 	print_action(philo, "took a fork");
-	super_sleep(philo->table->time_to_die);
+	super_sleep(philo->table->time_to_die, philo);
 	pthread_mutex_unlock(&philo->fork_left);
 	return (NULL);
 }
