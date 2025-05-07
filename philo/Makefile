@@ -12,7 +12,8 @@ OBJECT_DIR	:=	./obj
 # ---------------------------------------------
 SOURCE_DIRS	:=	src src/utils
 VPATH		:= 	$(SOURCE_DIRS)
-SOURCES		:=	main.c ft_atoi.c ft_isdigit.c ft_strchr.c ft_putendl_fd.c check_arguments.c init.c time.c start_dining.c join_threads.c helper.c routine_philo.c philo_think.c philo_sleep.c philo_eat.c routine_monitor.c cleanup.c ft_putstr_fd.c
+SOURCES		:=	main.c ft_atoi.c ft_isdigit.c ft_strchr.c ft_putendl_fd.c check_arguments.c init.c time.c start_dining.c join_threads.c helper.c \
+				routine_philo.c philo_think.c philo_sleep.c philo_eat.c routine_monitor.c cleanup.c ft_putstr_fd.c ft_strlen.c ft_atol.c
 OBJECTS		:=	$(addprefix $(OBJECT_DIR)/, $(SOURCES:.c=.o))
 
 # ---------------------------------------------

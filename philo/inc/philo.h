@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 14:13:31 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/05/06 19:18:27 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/05/07 12:07:54 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ void	cleanup(t_table *table);
 // UTILS
 // ---------------------------------------------
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 int		ft_isdigit(int num);
 char	*ft_strchr(const char *str, int c);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
+size_t	ft_strlen(const char *str);
 
 #endif
